@@ -1,4 +1,7 @@
-from templates_symbols.template_letters import LetterLower, LetterUpper, Digits, Symbols
+from templates.letterlower import LetterLower
+from templates.letterupper import LetterUpper
+from templates.digits import Digits
+from templates.symbols import Symbols
 from genpass import GenPass
 
 param = {
@@ -7,9 +10,9 @@ param = {
         "p3":Symbols
     }
 
-pswd = GenPass(13, **param)
+pswd = GenPass(9, **param)
 
 for _ in range(10):
     print(pswd.make_password())
 
-pswd.write_password_to_file(100)
+print(pswd.to_json(5000))

@@ -1,25 +1,29 @@
-from templates_symbols.template_letters import TemplateSymbols
+from interface.abctemplate import AbcTemplate
 from abc import ABC
 from inspect import isclass
-from random import shuffle, randint, choice
+from random import shuffle, choice
 
 
 class AbcGenPass(ABC):
-    __symb_pass = {}
+    __symb_pass = ()
 
     def __init__(self, length_pswd: int = 6,  **kwargs):
         if length_pswd < len(kwargs):
             length_pswd = len(kwargs)
         self.__length_pswd = length_pswd
+        temp = []
         for v in kwargs.values():
-            if isclass(v) and issubclass(v, TemplateSymbols):
-                self.__symb_pass.setdefault(v, v())
+            if isclass(v) and issubclass(v, AbcTemplate):
+                temp.append(v())
+        self.__symb_pass = temp
+
+    def get_classes(self):
+        return [i.class_name for i in self.__symb_pass]
 
     def __get_template_password(self):
-        values = list(self.__symb_pass.values())
-        template_password = values
+        template_password = []
         while len(template_password) < self.__length_pswd:
-            template_password.append(choice(values))
+            template_password.append(choice(self.__symb_pass))
             shuffle(template_password)
         return template_password
 
@@ -30,4 +34,3 @@ class AbcGenPass(ABC):
             new_password.extend(i.get_random())
         shuffle(new_password)
         return ''.join(new_password)
-
