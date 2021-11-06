@@ -1,13 +1,14 @@
+from genpass import GenPass
 from templates.letterlower import LetterLower
 from templates.letterupper import LetterUpper
 from templates.digits import Digits
 from templates.symbols import Symbols
-from genpass import GenPass
 
 param = {
         "p": LetterUpper,
         "p2":LetterLower,
-        "p3":Symbols
+        "p3":Symbols,
+        "p4":Digits
     }
 
 pswd = GenPass(9, **param)

@@ -1,5 +1,6 @@
-from interface.abcgenpass import AbcGenPass
 import json
+from interface.abcgenpass import AbcGenPass
+
 
 class GenPass(AbcGenPass):
 

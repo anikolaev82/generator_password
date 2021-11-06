@@ -1,5 +1,5 @@
-from random import choices
 from abc import ABC
+from random import choices
 
 
 class AbcTemplate(ABC):

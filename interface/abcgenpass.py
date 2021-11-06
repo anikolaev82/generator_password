@@ -1,7 +1,7 @@
-from interface.abctemplate import AbcTemplate
 from abc import ABC
 from inspect import isclass
 from random import shuffle, choice
+from interface.abctemplate import AbcTemplate
 
 
 class AbcGenPass(ABC):
